@@ -1,5 +1,2 @@
 <h2>New Reminder</h2>
-<%= form_with model: Reminder.new do |form| %>
-  <%= form.text_field :text %>
-  <%= form.datetime_field :send_at %>
-<% end %>
+<%= render 'form' %>

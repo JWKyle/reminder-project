@@ -5,9 +5,15 @@ class RemindersController < ApplicationController
 
   def create
     @reminder = Reminder.new(reminder_params)
+    # @reminder.author = current_user
     @reminder.save
     # adapt redirect to @user after merge
     redirect_to @reminder
+  end
+
+  def edit
+    @reminder = Reminder.find(params[:id])
+
   end
 
   private
