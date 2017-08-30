@@ -2,9 +2,6 @@
 class UsersController < ApplicationController
   before_action :user_params, only: [:create]
 
-  # def index
-  #
-  # end
 
   def new
     @user = User.new
