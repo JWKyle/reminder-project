@@ -2,12 +2,12 @@
 
 
   <div class="registration-container">
-    <%= form_with model: @user, class: "registration-form" do |form| %>
+    <%= form_with model: @user, local: true, class: "registration-form" do |form| %>
       <%= form.text_field :first_name, placeholder: "First Name" %>
       <%= form.text_field :last_name, placeholder: "Last Name"%>
       <%= form.text_field :email, placeholder: "Email"%>
       <%= form.text_field :phone, placeholder: "Phone Number"%>
-      <%= form.text_field :password, placeholder: "Password"%>
-      <%= form.submit "Register"%>
+      <%= form.password_field :password, placeholder: "Password"%>
+      <%= form.submit "Register", remote: false%>
     <% end %>
   </div>

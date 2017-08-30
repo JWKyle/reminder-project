@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe UsersController do
+  # let!(:user) { User.create!(first_name: "Test", last_name: "Tester", email: "test@online.com", phone: 8475309, password: "12345") }
   describe "GET #new" do
     it "responds with status code 200" do
       get :new
@@ -20,7 +21,7 @@ describe UsersController do
 
   describe "post #create" do
     it "responds with status code 302" do
-      post :create, { user: { first_name: "Test", last_name: "Tester", email: "test@online.com", phone: 8475309, password: 12345 } }
+      post :create, { :user => { first_name: "Test", last_name: "Tester", email: "test@online.com", phone: 8475309, password: 12345 } }
       expect(response).to have_http_status 302
     end
 
