@@ -5,3 +5,4 @@
 link to edit
 
 button for delete
+<%= link_to 'Delete', reminder_path(@reminder), method: :delete, data: {confirm: 'Are you sure?'} %>

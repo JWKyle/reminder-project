@@ -16,6 +16,13 @@ class RemindersController < ApplicationController
 
   end
 
+  def destroy
+    @reminder = Reminder.find(params[:id])
+    @reminder.destroy
+
+    redirect_to root_path
+  end
+
   private
     def reminder_params
       params.require(:reminder).permit(:text, :send_at)
