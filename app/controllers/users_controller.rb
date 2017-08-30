@@ -13,18 +13,13 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to "/users/#{@user.id}"
     else
-      flash.now[:error] = "We could not register you.  Please includer all information, and try again."
+      flash.now[:error] = "We could not register you.  Please include all information, and try again."
       render 'new'
     end
   end
 
     def show
-      p session[:user_id]
-      # if logged_in
         @user = User.find(session[:user_id])
-      # else
-      #   redirect_to "https://www.cnn.com"
-      # end
     end
 
 # add other necessary routes if time permitting
