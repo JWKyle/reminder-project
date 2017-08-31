@@ -1,2 +1,3 @@
 $('#reminders-list').append("<%= j render (@reminder) %>");
-$('.reminder-form').hide();
+$('.new-reminder-form')[0].reset;
+$('.new-reminder-form').hide();

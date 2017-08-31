@@ -19,6 +19,7 @@ class UsersController < ApplicationController
 
   def show
       @user = User.find(session[:user_id])
+      @reminders = @user.reminders
   end
 
 # add other necessary routes if time permitting
