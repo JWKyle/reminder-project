@@ -1,1 +1,2 @@
-$('#reminders').html("<%= j (render @reminders) %>");
+$('div#<%= dom_id(@reminder) %>').fadeOut();
+console.log($('div#<%= dom_id(@reminder)%>'));

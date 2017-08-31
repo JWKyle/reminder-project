@@ -64,8 +64,11 @@ class RemindersController < ApplicationController
   def destroy
     @reminder = Reminder.find(params[:id])
     @reminder.destroy
+    respond_to do |f|
+      f.html { redirect_to reminders_url }
+      f.js
+    end
 
-    redirect_to root_path
   end
 
   private
