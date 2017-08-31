@@ -1,19 +1,21 @@
 class RemindersController < ApplicationController
-
-  def index
-    @reminders = Reminder.all
-    @reminder = Reminder.new
-
-    respond_to do |format|
-      format.html
-      format.json
-    end
-
-  end
+  before_action :authentic
+  # before_action :authorized!(User.find(session[:user_id]))
+  # def index
+  #   @reminders = Reminder.all
+  #   @reminder = Reminder.new
+  #
+  #   respond_to do |format|
+  #     format.html
+  #     format.json
+  #   end
+  #
+  # end
 
   def show
+    @user = User.find(session[:user_id])
+    authorized!(@user)
     @reminder = Reminder.find(params[:id])
-
     respond_to do |format|
       format.html
       format.json
@@ -25,8 +27,10 @@ class RemindersController < ApplicationController
   end
 
   def create
+    @user = User.find(session[:user_id])
+    authorized!(@user)
     @reminder = Reminder.new(reminder_params)
-    @reminder.author_id = 1
+    @reminder.author_id = current_user.id
     @reminder.save
 
     respond_to do |f|
@@ -44,10 +48,14 @@ class RemindersController < ApplicationController
   end
 
   def edit
+    @user = User.find(session[:user_id])
+    authorized!(@user)
     @reminder = Reminder.find(params[:id])
   end
 
   def update
+    @user = User.find(session[:user_id])
+    authorized!(@user)
     @reminder = Reminder.find(params[:id])
 
     if @reminder.update(params[:reminder].permit(:text, :send_at))
@@ -62,6 +70,8 @@ class RemindersController < ApplicationController
   end
 
   def destroy
+    @user = User.find(session[:user_id])
+    authorized!(@user)
     @reminder = Reminder.find(params[:id])
     @reminder.destroy
     respond_to do |f|
