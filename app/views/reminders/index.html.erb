@@ -1,0 +1,14 @@
+<h1>index</h1>
+
+<% if @reminders %>
+<ul id=reminders-list>
+  <% @reminders.each do |reminder| %>
+  <%= render 'reminder', :reminder => reminder %>
+    </li>
+  <% end %>
+</ul>
+<% end %>
+
+
+<%= link_to 'New Reminder', new_reminder_path, remote: true %>
+<div class="new-reminder-form" style="display:none;"></div>
