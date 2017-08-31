@@ -98,6 +98,23 @@ describe RemindersController do
     end
 	end
 
+	describe "DELETE #destroy" do
+		it "responds with status code 302" do
+      delete :destroy, params: { id: reminder.id }
+      expect(response).to have_http_status 302
+    end
+
+    it "destroys the requested reminder" do
+      expect { delete(:destroy, params: { id: reminder.id }) }.to change(Reminder, :count).by(-1)
+    end
+
+    it "redirects to root" do
+      delete :destroy, params: { id: reminder.id }
+      expect(response).to redirect_to root_url
+    end
+
+	end
+
 
 
 
