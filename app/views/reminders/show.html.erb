@@ -1,0 +1,8 @@
+<h2><%= @reminder.text %></h2>
+
+<h4><%= @reminder.send_at %></h4>
+
+link to edit
+<%= link_to 'Edit', edit_reminder_path(@reminder) %>
+button for delete
+<%= link_to 'Delete', reminder_path(@reminder), method: :delete, data: {confirm: 'Are you sure?'} %>

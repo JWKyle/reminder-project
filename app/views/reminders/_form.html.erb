@@ -1,0 +1,8 @@
+
+<%= form_with model: @reminder, local: true do |form| %>
+  <%= form.label :text %>
+  <%= form.text_field :text %>
+  <%= form.label :send_at %>
+  <%= form.datetime_field :send_at %>
+  <%= form.submit %>
+<% end %>
