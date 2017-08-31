@@ -7,20 +7,19 @@ class UsersController < ApplicationController
   end
 
   def create
-    p user_params
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
       redirect_to "/users/#{@user.id}"
     else
       flash.now[:error] = "We could not register you.  Please include all information, and try again."
-      render 'new'
+      render 'new', status: 422
     end
   end
 
-    def show
-        @user = User.find(session[:user_id])
-    end
+  def show
+      @user = User.find(session[:user_id])
+  end
 
 # add other necessary routes if time permitting
 

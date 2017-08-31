@@ -1,6 +1,23 @@
 class RemindersController < ApplicationController
+
+  def index
+    @reminders = Reminder.all
+    @reminder = Reminder.new
+
+    respond_to do |format|
+      format.html
+      format.json
+    end
+
+  end
+
   def show
     @reminder = Reminder.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   def new
@@ -10,13 +27,20 @@ class RemindersController < ApplicationController
   def create
     @reminder = Reminder.new(reminder_params)
     @reminder.author_id = 1
-    if @reminder.save
-      p "succeeded!"
-      redirect_to @reminder, notice: 'reminder was successfully created.'
-    else
-      p "failed!!"
-      render :new, notice: 'reminder failed.'
+    @reminder.save
+
+    respond_to do |f|
+      f.html { redirect_to reminders_url }
+      f.js
     end
+    #
+    # if @reminder.save
+    #   p "succeeded!"
+    #   redirect_to @reminder, notice: 'reminder was successfully created.'
+    # else
+    #   p "failed!!"
+    #   render :new, notice: 'reminder failed.'
+    # end
   end
 
   def edit
@@ -27,7 +51,11 @@ class RemindersController < ApplicationController
     @reminder = Reminder.find(params[:id])
 
     if @reminder.update(params[:reminder].permit(:text, :send_at))
-      redirect_to @reminder
+      respond_to do |f|
+        f.html { redirect_to reminders_url }
+        f.js
+      end
+      # redirect_to @reminder
     else
       render 'edit'
     end
@@ -36,8 +64,11 @@ class RemindersController < ApplicationController
   def destroy
     @reminder = Reminder.find(params[:id])
     @reminder.destroy
+    respond_to do |f|
+      f.html { redirect_to reminders_url }
+      f.js
+    end
 
-    redirect_to root_path
   end
 
   private
