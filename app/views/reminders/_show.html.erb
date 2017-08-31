@@ -1,0 +1,10 @@
+<li>
+  <%= reminder.text %>
+  <%= reminder.author_id %>
+  <%= link_to reminder, remote: true, method: :delete,  data: { confirm: 'Are you sure?' } do %>
+  <button>Delete!</button>
+  <% end %>
+
+  <%= link_to 'Edit Reminder', edit_reminder_path, remote: true , locals: {reminder: @reminder}%>
+  <div class="reminder-form"></div>
+</li>

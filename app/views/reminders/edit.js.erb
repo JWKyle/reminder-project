@@ -1,0 +1,4 @@
+// $('.reminder-form').closest('div.reminder').html("<%= j (render 'form') %>");
+$('form').hide();
+$('div#<%= dom_id(@reminder) %>').html('<%= j render("form") %>');
+// $('.reminder-form').slideDown(350);
