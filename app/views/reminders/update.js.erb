@@ -1,0 +1,6 @@
+$('form').hide();
+
+$('div#<%= dom_id(@reminder)%>').html("<%= j render (@reminder) %>");
+
+console.log(this);
+console.log($('div#<%= dom_id(@reminder)%>'));

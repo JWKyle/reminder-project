@@ -51,7 +51,11 @@ class RemindersController < ApplicationController
     @reminder = Reminder.find(params[:id])
 
     if @reminder.update(params[:reminder].permit(:text, :send_at))
-      redirect_to @reminder
+      respond_to do |f|
+        f.html { redirect_to reminders_url }
+        f.js
+      end
+      # redirect_to @reminder
     else
       render 'edit'
     end
