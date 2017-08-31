@@ -49,5 +49,56 @@ describe RemindersController do
 		end
 	end
 
+	describe "POST #create" do
+		context "when valid params are passed" do
+			it "responds with status code 302" do
+        post :create, params: { reminder: { text: "Wash dog", author_id: 1, send_at: DateTime.now } }
+        expect(response).to have_http_status 302
+      end
+
+			it "creates a new reminder in the database" do
+				expect { post(:create, params: { reminder: { text: "Wash dog", author_id: 1, send_at: DateTime.now } } ) }.to change(Reminder, :count).by(1)
+			end
+
+			it "assigns the newly created reminder as @reminder" do
+        post :create, params: { reminder: { text: "Wash dog", author_id: 1, send_at: DateTime.now } }
+        expect(assigns(:reminder)).to be_a(reminder)
+      end
+
+      it "sets a notice that the reminder was successfully created" do
+        post :create, params: { reminder: { text: "Wash dog", author_id: 1, send_at: DateTime.now } }
+        expect(flash[:notice]).to match /reminder was successfully created/
+      end
+
+      it "redirects to the created reminder" do
+        post :create, params: { reminder: { text: "Wash dog", author_id: 1, send_at: DateTime.now } }
+        expect(response).to redirect_to assigns(:reminder)
+      end
+		end
+
+		context "when invalid params are passed" do
+      it "renders a flash notice 'reminder failed.'" do
+        post :create, params: { reminder: { text: nil, author_id: nil, send_at: DateTime.now } }
+        expect(flash[:notice]).to match "reminder failed."
+      end
+
+      it "does not create a new reminder in the database" do
+        expect { post(:create, params: { reminder: { text: nil, author_id: nil, send_at: DateTime.now } } ) }.to_not change(reminder, :count)
+      end
+
+      it "assigns the unsaved reminder as @reminder" do
+        post :create, params: { reminder: { text: nil, author_id: nil, send_at: DateTime.now } }
+        expect(assigns(:reminder)).to be_a(reminder)
+      end
+
+      it "renders the :new template" do
+        post :create, params: { reminder: { text: nil, author_id: nil, send_at: DateTime.now } }
+        expect(response).to render_template(:new)
+      end
+    end
+	end
+
+
+
 
 end
