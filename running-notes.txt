@@ -1,0 +1,9 @@
+# Twilio - what we need?
+
+* gem 'twilio-ruby'
+
+* gem ''delayed_job_active_record' for sending L8r at appointed time
+
+* gem 'daemon' to start delayed job
+
+* gem 'figaro' for storing ENV variables - can also send them to Heroku from there

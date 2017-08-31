@@ -35,7 +35,15 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'capistrano-rails', group: :development
 
 # gems necessary for twilio
-gem "twilio-ruby"
+# twilio itself
+gem 'twilio-ruby'
+# activerecord gem to delay a job
+gem 'delayed_job_active_record'
+# daemon to start the delayed job
+gem 'daemon'
+# figaro for storing ENV variables
+gem 'figaro'
+
 
 
 group :development, :test do
