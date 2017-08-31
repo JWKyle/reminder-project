@@ -1,4 +1,15 @@
 class RemindersController < ApplicationController
+
+  def index
+    @reminders = Reminder.all
+
+    respond_to do |format|
+      format.html
+      format.json
+    end
+
+  end
+
   def show
     @reminder = Reminder.find(params[:id])
   end
@@ -10,6 +21,7 @@ class RemindersController < ApplicationController
   def create
     @reminder = Reminder.new(reminder_params)
     @reminder.author_id = 1
+
     if @reminder.save
       p "succeeded!"
       redirect_to @reminder, notice: 'reminder was successfully created.'

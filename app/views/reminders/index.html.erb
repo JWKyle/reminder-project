@@ -1,0 +1,15 @@
+<h1>index</h1>
+
+<% if @reminders %>
+<ul>
+  <% @reminders.each do |reminder| %>
+    <li>
+      <%= reminder.text %>
+      <%= reminder.author_id %>
+    </li>
+  <% end %>
+</ul>
+<% end %>
+
+<%= link_to 'New Reminder', new_reminder_path, remote: true %>
+<div id="reminder-form" style="display:none;"></div>
