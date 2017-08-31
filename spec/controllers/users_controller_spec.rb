@@ -2,7 +2,6 @@ require 'rails_helper'
 # require 'factory_girl'
 
 describe UsersController do
-  # let!(:user) { User.create!(first_name: "Test", last_name: "Tester", email: "test@online.com", phone: 8475309, password: "12345") }
   describe "GET #new" do
     it "responds with status code 200" do
       get :new
@@ -22,8 +21,6 @@ describe UsersController do
 
   describe "post #create" do
     it "responds with status code 302" do
-      # user_params = FactoryGirl.attributes_for(:user)
-      # post :create, { user => user_params}
       post :create, params: {user: { first_name: "Test", last_name: "Tester", email: "test@online.com", phone: 8475309, password: 12345 }}
       expect(response).to have_http_status 302
     end
@@ -60,20 +57,25 @@ describe UsersController do
     end
   end
 
-  context "when invalid params are passed" do
+  context "#show" do
+    let!(:user) { User.create!(first_name: "Test", last_name: "Tester", email: "test@online.com", phone: 8475309, password: "12345") }
+
     describe "GET #show" do
       it "responds with status code 200" do
-        get :show, params: { id: user.id}
+        session[:user_id] = user.id
+        get :show, params: {id: session.id}
         expect(response).to have_http_status 200
       end
 
       it "assigns a show user to @user" do
-        get :show
+        session[:user_id] = user.id
+        get :show, params: {id: session.id}
         expect(assigns(:user)).to be_a User
       end
 
       it "renders the :show template" do
-        get :show
+        session[:user_id] = user.id
+        get :show, params: {id: session.id}
         expect(response).to render_template(:show)
       end
     end
