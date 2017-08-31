@@ -2,6 +2,7 @@ class RemindersController < ApplicationController
 
   def index
     @reminders = Reminder.all
+    @reminder = Reminder.new
 
     respond_to do |format|
       format.html
@@ -26,14 +27,20 @@ class RemindersController < ApplicationController
   def create
     @reminder = Reminder.new(reminder_params)
     @reminder.author_id = 1
+    @reminder.save
 
-    if @reminder.save
-      p "succeeded!"
-      redirect_to @reminder, notice: 'reminder was successfully created.'
-    else
-      p "failed!!"
-      render :new, notice: 'reminder failed.'
+    respond_to do |f|
+      f.html { redirect_to reminders_url }
+      f.js
     end
+    #
+    # if @reminder.save
+    #   p "succeeded!"
+    #   redirect_to @reminder, notice: 'reminder was successfully created.'
+    # else
+    #   p "failed!!"
+    #   render :new, notice: 'reminder failed.'
+    # end
   end
 
   def edit

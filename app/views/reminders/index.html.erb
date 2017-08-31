@@ -1,15 +1,19 @@
 <h1>index</h1>
 
 <% if @reminders %>
-<ul>
+<ul id=reminders-list>
   <% @reminders.each do |reminder| %>
     <li>
       <%= reminder.text %>
       <%= reminder.author_id %>
+      <%= link_to reminder, remote: true, method: :delete,  data: { confirm: 'Are you sure?' } do %>
+  <button>Delete!</button>
+<% end %>
     </li>
   <% end %>
 </ul>
 <% end %>
+
 
 <%= link_to 'New Reminder', new_reminder_path, remote: true %>
 <div id="reminder-form" style="display:none;"></div>
