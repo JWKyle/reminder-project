@@ -12,6 +12,11 @@ class RemindersController < ApplicationController
 
   def show
     @reminder = Reminder.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   def new
