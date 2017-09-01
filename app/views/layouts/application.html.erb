@@ -10,17 +10,25 @@
   </head>
 
   <body>
-    <% if current_user %>
-  <p> <a href="/users/<%= current_user.id %>">
-    <%= current_user.first_name %>'s Reminders</a>
-    <%= link_to "Logout", session_path(current_user), method: :delete %>
-  </p>
-    <% else %>
-    <%= link_to "Register", new_user_path %>
-    <% end %>
+    <div id="sidebar">
+      <div id="logo">
+        <%= link_to root_path do %>
+          <%= image_tag "dddragon.png" %>
+        <% end %>
+      </div>
+      <% if current_user %>
+        <p> <a href="/users/<%= current_user.id %>">
+          <%= current_user.first_name %>'s Reminders</a>
+          <%= link_to "Logout", session_path(current_user), method: :delete %>
+        </p>
+      <% else %>
+        <%= link_to "Register", new_user_path %>
+      <% end %>
       <% flash.each do |name, msg| -%>
         <%= content_tag :div, msg, class: name %>
       <% end %>
+
+    </div>
     <%= yield %>
   </body>
 </html>
