@@ -41,6 +41,6 @@ class Reminder < ApplicationRecord
     self.send_at
   end
 
-  # handle_asynchronously :reminder_cue, :run_at => Proc.new { |i| i.when_to_run }
+  handle_asynchronously :reminder_cue, :run_at => Proc.new { |i| i.when_to_run }
 
 end
