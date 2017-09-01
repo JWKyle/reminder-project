@@ -2,24 +2,38 @@
 <html>
   <head>
     <title>ReminderApp</title>
+    <%= favicon_link_tag 'favicon-clock3.png' %>
     <%= csrf_meta_tags %>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <%= stylesheet_link_tag    'application', media: 'all'%>
     <%= javascript_include_tag 'application'%>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
   </head>
 
   <body>
-    <% if current_user %>
-  <p> <a href="/users/<%= current_user.id %>">
-    <%= current_user.first_name %>'s Reminders</a>
-    <%= link_to "Logout", session_path(current_user), method: :delete %>
-  </p>
-    <% else %>
-    <%= link_to "Register", new_user_path %>
-    <% end %>
-      <% flash.each do |name, msg| -%>
-        <%= content_tag :div, msg, class: name %>
+    <div class="container">
+      <div id="sidebar">
+        <div id="logo">
+          <%= link_to root_path do %>
+            <%= image_tag "clock-with-human-feet.jpg" %>
+          <% end %>
+        </div>
+        <% if current_user %>
+          <p> <a href="/users/<%= current_user.id %>">
+            <%= current_user.first_name %>'s Reminders</a>
+            <%= link_to "Logout", session_path(current_user), method: :delete %>
+          </p>
+        <% else %>
+          <%= link_to "Register", new_user_path %>
       <% end %>
+        <% flash.each do |name, msg| -%>
+          <%= content_tag :div, msg, class: name %>
+        <% end %>
+
+      </div>
+    </div>
     <%= yield %>
   </body>
 </html>
