@@ -20,16 +20,11 @@ class UsersController < ApplicationController
 
   def show
     p "*"*30
-      # p session
-      # p "$"*50
 
-      # if logged_in?
         @user = User.find(session[:user_id])
         authorized!(@user)
-        @reminders = @user.reminders
-      # else
-      #   redirect_to root_path
-      # end
+        @reminders = @user.reminders.where( "send_at >= '#{DateTime.now}'" ).order(send_at: :desc)
+
   end
 
 # add other necessary routes if time permitting
