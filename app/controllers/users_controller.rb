@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    p @user.phone.class
+    p @user.phone = @user.phone.to_s
     if @user.save
       session[:user_id] = @user.id
       redirect_to "/users/#{@user.id}"
