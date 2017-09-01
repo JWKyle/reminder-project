@@ -1,4 +1,4 @@
-require 'byebug'
+
 
 module ApplicationHelper
   def current_user
