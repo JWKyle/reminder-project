@@ -41,8 +41,8 @@ gem 'twilio-ruby'
 gem 'delayed_job_active_record'
 # daemon to start the delayed job
 gem 'daemon'
-# figaro for storing ENV variables
-gem 'figaro'
+# ENV variables
+gem 'dotenv'
 
 
 
