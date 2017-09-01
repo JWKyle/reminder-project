@@ -3,7 +3,7 @@
 <% if @reminders %>
 <ul id=reminders-list>
   <% @reminders.each do |reminder| %>
-  <%= render 'reminders/_reminder', :reminder => reminder %>
+  <%= render 'reminders/reminder', :reminder => reminder %>
     </li>
   <% end %>
 </ul>

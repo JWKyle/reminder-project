@@ -1,6 +1,7 @@
 
 class UsersController < ApplicationController
 
+  before_action :authentic, only: [:show]
 
   def new
     @user = User.new
@@ -18,7 +19,17 @@ class UsersController < ApplicationController
   end
 
   def show
-      @user = User.find(session[:user_id])
+    p "*"*30
+      # p session
+      # p "$"*50
+
+      # if logged_in?
+        @user = User.find(session[:user_id])
+        authorized!(@user)
+        @reminders = @user.reminders
+      # else
+      #   redirect_to root_path
+      # end
   end
 
 # add other necessary routes if time permitting
@@ -27,4 +38,13 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :phone, :password)
   end
+  #
+  # def authentic
+  #   p logged_in?
+  #   if !logged_in?
+  #     p "loop"
+  #     # redirect_to root_path
+  #     p "i dont know"
+  #   end
+  # end
 end
