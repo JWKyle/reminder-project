@@ -85,4 +85,4 @@ class RemindersController < ApplicationController
     def reminder_params
       params.require(:reminder).permit(:text, :send_at)
     end
-end
+  end

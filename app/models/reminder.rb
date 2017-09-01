@@ -13,7 +13,7 @@ class Reminder < ApplicationRecord
     message = @client.api.account(account_sid).reminder_cues.create(
       :from => @twilio_number,
       :to => self.author.phone,
-      :body => self.text,
+      :body => self.text
     )
   end
 
