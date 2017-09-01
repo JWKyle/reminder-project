@@ -37,10 +37,10 @@ gem 'bcrypt', '~> 3.1.7'
 # gems necessary for twilio
 # twilio itself
 gem 'twilio-ruby'
-# activerecord gem to delay a job
+# Use delayed job for running background jobs
 gem 'delayed_job_active_record'
-# daemon to start the delayed job
-gem 'daemon'
+# Need daemons to start delayed_job
+gem 'daemons'
 # ENV variables
 gem 'dotenv'
 
