@@ -7,7 +7,7 @@ clone repository
 bundle, and be rails s!
 Update local env files to ensure twilio api key
 
-##User Stories:
+## User Stories:
 As a user, I want to submit a message that I will receive a text reminder at a set time in the future.
 
 As a user, I want tos ee upcoming reminders and where they are being sent.
